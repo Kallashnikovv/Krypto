@@ -1,15 +1,19 @@
 FROM python:3.13-slim
 
-ENV PYTHONUNBUFFERED=true
+ENV PYTHONPATH=/app
+
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-#COPY requirements.txt .
+COPY req.txt .
 
-#RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r req.txt
 
-#COPY . .
+COPY . .
 
-EXPOSE 8080
+EXPOSE 8000
 
-CMD ["uvicorn", "fastapi:app", "--host", "0.0.0.0", "--port", "8080"]
+HEALTHCHECK CMD ["curl", "--fail", "http://localhost:8000", "||", "exit 1"]
+
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

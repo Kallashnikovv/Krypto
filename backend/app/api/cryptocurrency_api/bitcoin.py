@@ -1,12 +1,13 @@
 import apikey
 import asyncio
-import aiohttp
+import aiohttp # imported
 import json
 
-url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
+selected_crypto = 'ADA,AVAX,BNB,BTC,DOGE,ETH,HEX,SOL,USDC,USDT,XRP' # chosen cryptocurrencies
+
 parameters = {
-  'start':'1',
-  'limit':'5', # number of cryptocurrencies showed
+  'symbol': selected_crypto,
   'convert':'USD'
 }
 headers = {
@@ -24,12 +25,14 @@ try:
     async with aiohttp.ClientSession() as session:
       data = await fetch_data(session)
 
-      for currency in data['data']:
-        id = currency['id']
-        name = currency['name']
-        symbol = currency['symbol']
-        price = currency['quote']['USD']['price']
-        percentage = round(currency['quote']['USD']['percent_change_1h'],2)
+    for symbols in data['data']:
+      currency = data['data'][symbols][0]
+      
+      id = currency['id']
+      symbol = currency['symbol']
+      name = currency['name']
+      price = currency['quote']['USD']['price']
+      percentage = currency['quote']['USD']['percent_change_1h']
 
   asyncio.run(get_data())
     

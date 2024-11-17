@@ -1,6 +1,6 @@
 import apikey
 import asyncio
-import aiohttp # imported
+import aiohttp
 import json
 
 url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'

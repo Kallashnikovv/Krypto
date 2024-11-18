@@ -1,7 +1,5 @@
 fastapi[standard]
-uvicorn
 asyncio
 aiohttp
-uvicorn
 pydantic
 pymongo

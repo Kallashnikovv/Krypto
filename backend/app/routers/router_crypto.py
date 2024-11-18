@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 from ..models.cryptocurrencies import CryptoRate
 
-router = APIRouter
+router = APIRouter()
 
 uri = "mongodb+srv://julka2222:atlasatlasmongo@cluster0.gt3kp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(uri, server_api=ServerApi('1'))

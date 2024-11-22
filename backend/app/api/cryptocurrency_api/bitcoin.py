@@ -1,4 +1,4 @@
-import apikey
+from app.api.cryptocurrency_api.keys import crypto_key as key
 import asyncio
 import aiohttp
 import json
@@ -12,13 +12,12 @@ parameters = {
 }
 headers = {
   'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': apikey.key(),
+  'X-CMC_PRO_API_KEY': key(),
 }
 
 async def fetch_data(session):
   async with session.get(url, params=parameters, headers=headers) as response:
     return await response.json()
-
 
 try:
   async def get_data():

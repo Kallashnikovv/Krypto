@@ -1,0 +1,5 @@
+fastapi[standard]
+asyncio
+aiohttp
+pydantic
+pymongo

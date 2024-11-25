@@ -1,8 +1,8 @@
 from pymongo import MongoClient, ASCENDING
 import asyncio
 import aiohttp
-import apikey
-from backend.app.models.cryptocurrencies import CryptoRate
+import app.api.cryptocurrency_api.keys as keys
+from app.models.cryptocurrencies import CryptoRate
 from bitcoin import fetch_data
 import json
 
@@ -24,7 +24,7 @@ parameters = {
 }
 headers = {
   'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': apikey.key(),
+  'X-CMC_PRO_API_KEY': keys.key(),
 }
 
 async def save_data_to_mongo():

@@ -1,0 +1,164 @@
+/* musze poprawic bo  */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #6b5b95; 
+    color: white;
+}
+
+.prawa {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 90px; 
+    background-color: #ded5df;
+    z-index: 5;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; 
+    background-color: #6b5b95;
+    z-index: 10;
+}
+
+.main-content {
+    display: grid;
+    grid-template-areas: 
+        "table"
+        "chart"
+        "trending-gainers";
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    padding: 20px;
+}
+  
+.table-container {
+    grid-area: table;
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 480px;
+}
+.table-container::-webkit-scrollbar {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th, td {
+    text-align: left;
+    padding: 12px;
+}
+
+th {
+    background-color: #e1e1e1;
+}
+
+tr:nth-child(even) {
+    background-color: #f3f0f5;
+}
+td {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.chart {
+    grid-area: chart;
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    height: 220px;
+}
+.chart h2
+{
+margin-top: 0px;
+}
+
+.trending, .gainers {
+    background: #fff;
+    border-radius: 25px;
+    padding: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    line-height: 1.8;
+    letter-spacing: 2px;
+    overflow: hidden;
+    text-align: center;
+    height: 220px;
+}
+.trending, .gainers {
+    background: #fff;
+    border-radius: 25px;
+    padding: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    text-align: center;
+    height: 220px;
+    width: 48%;
+}
+.trending-gainers {
+    grid-area: trending-gainers;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.chart h3, .trending h3, .gainers h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+}
+.trending h3 {
+    padding: 16px;
+    background: linear-gradient(90deg, #ded5df, #ded5df); 
+    color: #000000; 
+    border-radius: 25px 25px 0 0; 
+}
+
+.gainers h3 {
+    padding: 16px;
+    background: linear-gradient(90deg, #ded5df, #ded5df); 
+    color: #000000; 
+    border-radius: 25px 25px 0 0; 
+}
+
+.trending ul, .gainers ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 25px;
+}
+
+.trending li, .gainers li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.trending li:last-child, .gainers li:last-child {
+    border-bottom: none;
+}
+
+.chart canvas {
+    width: 100%;
+    height: 100%; 
+}

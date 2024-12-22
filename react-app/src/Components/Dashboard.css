@@ -1,0 +1,221 @@
+body, .main-container {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    width: 100vw;
+	overflow: hidden;
+    padding-top: 20px;
+}
+
+header, footer {
+    background-color: #ebebf5;
+    color: #000;
+    text-align: center;
+    padding: 5px; 
+    font-size: 18px; 
+    position: fixed;
+}
+
+
+nav a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 160px; 
+    margin-right: 90px; 
+    padding: 20px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+.main-content::-webkit-scrollbar {
+    display: none;
+}
+
+.content {
+    background-color: #f4f4fc;
+    padding: 20px;
+    border-radius: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.prawa {
+    background-color: #ebebf5;
+    width: 90px; 
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.boxy {
+    display: flex;
+    justify-content: space-between;
+    gap: 70px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%; 
+    max-width: 1500px;
+    font-size: 35px;
+}
+
+.box {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 30px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box h1 {
+    margin-bottom: 5px;
+    font-size: 3.5rem;
+    float: left;
+}
+
+.wartoscb {
+    font-weight: bold;
+    margin-bottom: 10px;
+    float: left;
+}
+
+
+.wykresb {
+    width: 50%;
+    height: 100px;
+    border-radius: 5px;
+    float: right;
+	background-color: white;
+}
+
+.market_czas {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.market_overview {
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    flex-direction: column; 
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-width: 400px;
+    min-height: 80px;
+    margin-left: 60px;
+	
+}
+
+.market_overview h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.wykres_market {
+    width: 80%;
+    height: 200px;
+    background-color: #F7F5FA;
+    border-radius: 10px;
+    margin-top: 10px;
+	
+}
+
+.box_z_czasem {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 40px;
+    text-align: center;
+    font-weight: bold;
+    min-width: 450px;
+	min-height: 200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+	margin-left: 60px;
+	margin-right: 110px;
+    gap: 20px;
+    height: 100%;
+	flex-direction: column;
+	font-size: 2rem;
+}
+.recent-activities {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	margin-right: 60px;
+	margin-left: 60px;
+	margin-top: 50px;
+	
+}
+
+#tytula {
+    font-weight: bold;
+	margin: 5px 30px;
+	margin-top: 30px;
+	font-size: 20px;
+}
+
+#dane {
+    margin: 10px 50px;
+    font-size: 1rem;
+	font-weight: bold;
+}
+th {
+    background-color: transparent !important;
+    color: inherit;
+    font-size: 20px;
+    padding: 40px;
+    text-align: left; 
+    vertical-align: middle; 
+}
+
+td {
+    padding: 40px;
+    text-align: left; 
+    vertical-align: middle; 
+}
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .search-form input,
+        .search-form select,
+        .search-form button {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-form button {
+            background-color: #8c8cfc;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #6a6af7;
+        }
+

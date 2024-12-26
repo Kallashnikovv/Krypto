@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+* {
+  color: black;
+}
+
+body {
+  background-color: #ebebf5;
+}
+
+header, footer {
+  background-color: #ebebf5;
+  color: #000;
+}
+
+nav {
+  background-color: #ebebf5;
+}
+
+nav a {
+  color: #000;
+}
+
+.content {
+  background-color: #f4f4fc;
+}
+
+.prawa {
+  background-color: #ebebf5;
+}
+
+.box {
+  background-color: #ffffff;
+}
+
+.market_overview {
+  background-color: #ffffff;
+}
+
+.wykres_market {
+  background-color: #F7F5FA;
+}
+
+.box_z_czasem {
+  background-color: #ffffff;
+}
+
+.recent-activities {
+  background-color: #ffffff;
+}
+.wykresb {
+  background-color: white;
+}
+
+body.dark-mode .wykresb {
+  background-color: #2F2F37;;
+}
+
+body.dark-mode {
+  background-color: #1C1C21;
+}
+
+body.dark-mode * {
+  color: rgb(255, 255, 255);
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1C1C21;
+  color: #000;
+}
+
+body.dark-mode nav {
+  background-color: #1C1C21;
+}
+
+body.dark-mode nav a {
+  color: #FFF700;
+}
+
+body.dark-mode .content {
+  background-color: #232329;
+}
+
+body.dark-mode .prawa {
+  background-color: #1C1C21;
+}
+
+body.dark-mode .box {
+  background-color: #2F2F37;
+}
+
+body.dark-mode .market_overview {
+  background-color: #2F2F37;
+}
+
+body.dark-mode .wykres_market {
+  background-color: #292930;
+}
+
+body.dark-mode .box_z_czasem {
+  background-color: #2F2F37;
+}
+
+body.dark-mode .recent-activities {
+  background-color: #2F2F37;
+}

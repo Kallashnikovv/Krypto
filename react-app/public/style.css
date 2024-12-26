@@ -1,0 +1,15 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #ebebf5;
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}

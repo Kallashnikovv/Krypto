@@ -1,0 +1,25 @@
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+.theme-icon {
+    display: none; 
+}
+
+body.light-mode .light-icon {
+    display: block; 
+    color: #f39c12;
+}
+
+body.dark-mode .dark-icon {
+    display: block;
+}

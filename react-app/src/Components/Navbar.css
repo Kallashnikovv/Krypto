@@ -1,0 +1,18 @@
+nav {
+    background-color: #ebebf5;
+    width: 160px; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px; 
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+nav p {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}

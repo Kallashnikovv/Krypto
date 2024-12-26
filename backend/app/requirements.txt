@@ -3,3 +3,6 @@ asyncio
 aiohttp
 pydantic
 pymongo
+matplotlib
+numpy
+pandas

@@ -1,8 +1,7 @@
 import aiohttp
-from app.api.cryptocurrency_api.keys import forex_key as key
+from backend.app.api.cryptocurrency_api.keys import forex_key as key
 
 currencies = "EUR,PLN,JPY,KRW,CAD,NZD"  # currencies
-key = key()
 
 url = f"https://api.currencyfreaks.com/v2.0/rates/latest?apikey={key()}&symbols={currencies}"
 

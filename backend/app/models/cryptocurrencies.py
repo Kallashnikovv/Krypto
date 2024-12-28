@@ -9,3 +9,4 @@ class CryptoRate(BaseModel):
     name: str
     price: float
     percentage: Optional[float] = None
+    timestamp: datetime

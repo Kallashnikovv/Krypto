@@ -1,10 +1,10 @@
 from pymongo import MongoClient, ASCENDING
 import asyncio
 import aiohttp
-import app.api.cryptocurrency_api.keys as keys
-from app.models.cryptocurrencies import CryptoRate
+import backend.app.api.cryptocurrency_api.keys as keys
+from backend.app.models.cryptocurrencies import CryptoRate
 from bitcoin import fetch_data
-import json
+from datetime import datetime
 
 #MongoDB connection
 client = MongoClient('localhost:27017')
@@ -24,7 +24,7 @@ parameters = {
 }
 headers = {
   'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': keys.key(),
+  'X-CMC_PRO_API_KEY': keys.crypto_key()
 }
 
 async def save_data_to_mongo():
@@ -37,9 +37,10 @@ async def save_data_to_mongo():
             symbol = currency['symbol'],
             name = currency['name'],
             price = currency['quote']['USD']['price'],
-            percentage = currency['quote']['USD']['percent_change_1h']
+            percentage = currency['quote']['USD']['percent_change_1h'],
+            timestamp = datetime.now()
              )
-            cryptocurrencies.insert_one(crypto_data.dict())
+            cryptocurrencies.insert_one(crypto_data.model_dump())
 try:
     asyncio.run(save_data_to_mongo())
 except (aiohttp.ClientConnectionError, aiohttp.ClientTimeout) as e:

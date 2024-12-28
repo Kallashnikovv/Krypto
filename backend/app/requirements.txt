@@ -6,3 +6,4 @@ pymongo
 matplotlib
 numpy
 pandas
+fpdf

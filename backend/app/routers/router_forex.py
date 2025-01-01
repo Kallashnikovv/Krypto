@@ -2,8 +2,8 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from fastapi import APIRouter, HTTPException
 from typing import List
-from app.models.currencies import Forex
-from app.api.cryptocurrency_api.keys import mongopswd as pswd, mongousr as usr
+from backend.app.models.currencies import Forex
+from backend.app.api.cryptocurrency_api.keys import mongopswd as pswd, mongousr as usr
 
 router = APIRouter()
 

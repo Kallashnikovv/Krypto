@@ -1,7 +1,6 @@
-from app.api.cryptocurrency_api.keys import crypto_key as key
+from backend.app.api.cryptocurrency_api.keys import crypto_key as key
 import asyncio
 import aiohttp
-import json
 
 url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
 selected_crypto = 'ADA,AVAX,BNB,BTC,DOGE,ETH,HEX,SOL,USDC,USDT,XRP' # chosen cryptocurrencies

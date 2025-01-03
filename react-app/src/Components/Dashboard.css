@@ -129,15 +129,36 @@ nav a {
     text-align: center;
 }
 
+
 .wykres_market {
     width: 80%;
     height: 200px;
     background-color: #F7F5FA;
     border-radius: 10px;
     margin-top: 10px;
-	
+    min-width: 850px;
+    min-height: 400px;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    
 }
 
+
+.chart-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit:fill;     
+    border-radius: 10px;     
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease; 
+    min-width: 850px;
+    min-height: 400px;
+    
+}
+.chart-img:hover{
+    transform: scale(1.5); 
+}
 .box_z_czasem {
     background-color: #ffffff;
     padding: 15px;
@@ -195,27 +216,27 @@ td {
     text-align: left; 
     vertical-align: middle; 
 }
-        .search-form {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
-        .search-form input,
-        .search-form select,
-        .search-form button {
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .search-form button {
-            background-color: #8c8cfc;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .search-form button:hover {
-            background-color: #6a6af7;
-        }
+.search-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+.search-form input,
+.search-form select,
+.search-form button {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.search-form button {
+    background-color: #8c8cfc;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.search-form button:hover {
+    background-color: #6a6af7;
+}
 

@@ -61,14 +61,16 @@ const App = () => {
     */
     // Przykładowe dane walut 
     const exampleData = [
-      { id: 1, name: "Bitcoin", symbol: "BTC", price: 50000, percentageChange: 2.5, type: "crypto" },
-      { id: 2, name: "Ethereum", symbol: "ETH", price: 3500, percentageChange: 1.2, type: "crypto" },
-      { id: 3, name: "Litecoin", symbol: "LTC", price: 200, percentageChange: -0.5, type: "crypto" },
-      { id: 4, name: "Ripple", symbol: "XRP", price: 1.2, percentageChange: 0.8, type: "crypto" },
-      { id: 5, name: "Cardano", symbol: "ADA", price: 1.3, percentageChange: 3.0, type: "crypto" },
-      { id: 6, name: "USD", symbol: "USD", price: 1, percentageChange: 0.0, type: "fiat" },
-      { id: 7, name: "EUR", symbol: "EUR", price: 1.18, percentageChange: 0.1, type: "fiat" },
-    ];
+      { id: 1, name: "Bitcoin", symbol: "BTC", price: 27000, percentageChange: -1.8, type: "crypto" },
+      { id: 2, name: "Ethereum", symbol: "ETH", price: 1650, percentageChange: 0.7, type: "crypto" },
+      { id: 3, name: "Litecoin", symbol: "LTC", price: 70, percentageChange: -0.3, type: "crypto" },
+      { id: 4, name: "Ripple", symbol: "XRP", price: 0.42, percentageChange: 2.1, type: "crypto" },
+      { id: 5, name: "Cardano", symbol: "ADA", price: 0.25, percentageChange: -0.4, type: "crypto" },
+      { id: 6, name: "Viacoin", symbol: "VIA", price: 0.18, percentageChange: -2.0, type: "crypto" },
+      { id: 7, name: "USD", symbol: "USD", price: 1, percentageChange: 0.0, type: "fiat" },
+      { id: 8, name: "EUR", symbol: "EUR", price: 1.08, percentageChange: 0.2, type: "fiat" }
+    ]
+    
     setAllCurrencies(exampleData);
     setFilteredCurrencies(exampleData);  
     setLoading(false);
@@ -127,8 +129,10 @@ const App = () => {
         <ThemeToggle /> 
         <Routes> 
           <Route exact path="/" element={<Dashboard filteredCurrencies={filteredCurrencies} onFilter={handleFilter} />} />
-          <Route path="/raporty" element={<Raporty />} />
+          <Route path="/raporty" element={<Raporty filteredCurrencies={filteredCurrencies} onFilter={handleFilter} />} />
         </Routes>
+
+          
       </div>
     </Router>
   );

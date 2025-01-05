@@ -4,45 +4,22 @@ import './Form.css';
 const CurrencyFilter = ({ onFilter }) => {
   const [formData, setFormData] = useState({
     searchTerm: '',
-    currencyType: 'all',  // Domyślnie wszystkie waluty
+    currencyType: 'all',
     minValue: '',
     maxValue: '',
-    sortOption: '', // Domyślnie brak sortowania
+    sortOption: '',
   });
 
- 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Funkcja do filtrowania walut
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { searchTerm, currencyType, minValue, maxValue, sortOption } = formData;
-
-    // filtr na min i max
-    const minVal = minValue ? parseFloat(minValue) : null;
-    const maxVal = maxValue ? parseFloat(maxValue) : null;
-
-    if (minVal !== null && isNaN(minVal)) {
-      alert('Min. wartość musi być liczbą.');
-      return;
-    }
-    if (maxVal !== null && isNaN(maxVal)) {
-      alert('Max. wartość musi być liczbą.');
-      return;
-    }
-    if (minVal !== null && maxVal !== null && minVal > maxVal) {
-      alert('Min. wartość nie może być większa niż Max. wartość.');
-      return;
-    }
-
-    // Filtrowanie walut na podstawie danych
     const filterData = { searchTerm, currencyType, minValue, maxValue, sortOption };
-
-    onFilter(filterData);
+    onFilter(filterData); 
   };
 
   return (

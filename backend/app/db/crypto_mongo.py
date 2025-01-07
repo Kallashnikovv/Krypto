@@ -1,15 +1,14 @@
-from pymongo import MongoClient, ASCENDING
+from pymongo import ASCENDING
 import asyncio
 import aiohttp
-import backend.app.api.cryptocurrency_api.keys as keys
-from backend.app.models.cryptocurrencies import CryptoRate
-from bitcoin import fetch_data
+import app.api.keys as keys
+from app.models.cryptocurrencies import CryptoRate
+from app.api.cryptocurrency_api.bitcoin import fetch_data
 from datetime import datetime
+from app.db.mongo_connection import database
 
 #MongoDB connection
-client = MongoClient('localhost:27017')
-db = client['Crypto']
-cryptocurrencies = db['cryptocurrencies']
+cryptocurrencies = database['cryptocurrencies']
 
 #Indexes
 cryptocurrencies.create_index([('id', ASCENDING)], unique=False)
@@ -28,6 +27,12 @@ headers = {
 }
 
 async def save_data_to_mongo():
+    try:
+        await save_data()
+    except (aiohttp.ClientConnectionError, aiohttp.ClientTimeout) as e:
+        print(e)
+
+async def save_data():
     async with aiohttp.ClientSession() as session:
         data = await fetch_data(session)
         for symbols in data['data']:
@@ -41,7 +46,3 @@ async def save_data_to_mongo():
             timestamp = datetime.now()
              )
             cryptocurrencies.insert_one(crypto_data.model_dump())
-try:
-    asyncio.run(save_data_to_mongo())
-except (aiohttp.ClientConnectionError, aiohttp.ClientTimeout) as e:
-    print(e)

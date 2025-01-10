@@ -1,4 +1,4 @@
-from backend.app.api.cryptocurrency_api.keys import crypto_key as key
+from app.api.keys import crypto_key as key
 import asyncio
 import aiohttp
 
@@ -18,21 +18,19 @@ async def fetch_data(session):
   async with session.get(url, params=parameters, headers=headers) as response:
     return await response.json()
 
-try:
-  async def get_data():
+async def get_data():
+  try:
     async with aiohttp.ClientSession() as session:
       data = await fetch_data(session)
 
     for symbols in data['data']:
       currency = data['data'][symbols][0]
-      
+
       id = currency['id']
       symbol = currency['symbol']
       name = currency['name']
       price = currency['quote']['USD']['price']
       percentage = currency['quote']['USD']['percent_change_1h']
-
-  asyncio.run(get_data())
-    
-except (aiohttp.ClientConnectionError, aiohttp.ClientTimeout) as e:
-  print(e)
+      
+  except (aiohttp.ClientConnectionError, aiohttp.ClientTimeout) as e:
+    print(e)

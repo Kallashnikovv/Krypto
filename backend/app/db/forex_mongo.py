@@ -1,14 +1,17 @@
-import pymongo
-from backend.app.api.cryptocurrency_api.keys import mongopswd as pswd, mongousr as usr
-from backend.app.api.currency_api.cr_api import forex
-from backend.app.models.currencies import Forex
+from app.api.currency_api.cr_api import forex
+from app.models.currencies import Forex
 from datetime import datetime
 import asyncio
+from app.db.mongo_connection import database
+import aiohttp
 
-client = pymongo.MongoClient('localhost:27017')
+collection = database["currencies"]
 
-db = client["Crypto"]
-collection = db["currencies"]
+async def save_data_to_mongo():
+    try:
+        await save_data()
+    except (aiohttp.ClientConnectionError, aiohttp.ClientTimeout) as e:
+        print(e)
 
 async def save_data():
     data = await forex()
@@ -21,8 +24,3 @@ async def save_data():
     for currency in docs:
         currency_dict = currency.model_dump()
         collection.insert_one(currency_dict)
-
-async def main():
-    await save_data()
-
-asyncio.run(main())

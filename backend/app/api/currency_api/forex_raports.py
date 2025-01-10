@@ -1,12 +1,10 @@
-from pymongo import MongoClient
 import matplotlib.pyplot as plt
 import pandas as pd
 from datetime import datetime, timedelta
 from fpdf import FPDF
+from app.db.mongo_connection import database
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client["Crypto"]
-collection = db["currencies"]
+collection = database["currencies"]
 
 currencies = collection.find()
 data = pd.DataFrame(currencies)

@@ -1,24 +1,23 @@
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
 from fastapi import APIRouter, HTTPException
 from typing import List
-from backend.app.models.currencies import Forex
-from backend.app.api.cryptocurrency_api.keys import mongopswd as pswd, mongousr as usr
+from app.models.currencies import Forex
+from app.db.mongo_connection import database
+from app.db.forex_mongo import save_data_to_mongo as save_forex_data
 
 router = APIRouter()
 
-uri = f"mongodb+srv://{usr()}2:{pswd()}@cluster0.gt3kp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = MongoClient(uri, server_api=ServerApi('1'))
-
-database = client["Crypto"]
-
 @router.get("/", response_description="List all currencies", response_model=List[Forex])
-def list_curr():
+async def list_curr():
     curr = list(database["currencies"].find(limit=6))
     return curr
 
 @router.get("/{symbol}", response_description="Get a single currency by symbol", response_model=Forex)
-def find_curr(symbol: str):
+async def find_curr(symbol: str):
     if (curr := database["currencies"].find_one({"symbol": symbol})) is not None:
         return curr
     raise HTTPException(status_code=404, detail=f"Currency with symbol {symbol} not found")
+
+@router.api_route("/update", methods=["POST"])
+async def update_curr():
+    await save_forex_data()
+    return {"message": "Data updated successfully"}

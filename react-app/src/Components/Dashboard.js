@@ -4,8 +4,7 @@ import Clock from './Clock';
 import ThemeToggle from './ThemeToggle';
 import CurrencyFilter from './Form';
 import Navbar from './Navbar';
-import CryptoChart from './charts';// Importujemy nasz nowy komponent
-
+import CryptoChart from './charts';
 
 function Dashboard({ filteredCurrencies, onFilter }) {
   const [chartUrls, setChartUrls] = useState({
@@ -13,9 +12,17 @@ function Dashboard({ filteredCurrencies, onFilter }) {
     ethereum: '/cryptocurrency_info_today.png',
     viacoin: '/cryptocurrency_info_today.png',
   });
+  const [displayedCurrencies, setDisplayedCurrencies] = useState(filteredCurrencies);
+  const [loading, setLoading] = useState(false);
 
+  
+  const getPrice = (coinName) => {
+    const coin = displayedCurrencies.find(currency => currency.name.toLowerCase() === coinName.toLowerCase());
+    return coin ? parseFloat(coin.price).toFixed(2) : 'N/A';
+  };
+
+  
   const fetchChartData = () => {
-    // Zmieniamy URL obrazka, aby wymusić jego odświeżenie (dodajemy unikalny parametr)
     setChartUrls({
       bitcoin: `/cryptocurrency_info_today.png?timestamp=${new Date().getTime()}`,
       ethereum: `/cryptocurrency_info_today.png?timestamp=${new Date().getTime()}`,
@@ -23,14 +30,37 @@ function Dashboard({ filteredCurrencies, onFilter }) {
     });
   };
 
+  // pobieranie danych z backendu
+  const fetchCurrencies = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('http://127.0.0.1:8000/crypto/');
+      const data = await response.json();
+      setDisplayedCurrencies(data);
+    } catch (error) {
+      console.error('Błąd przy pobieraniu danych:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // aktualizowanie URL wykresów
   useEffect(() => {
     fetchChartData();
-    const interval = setInterval(() => {
-      fetchChartData();
-    }, 60000); // 60000ms = 1 minuta
-
+    const interval = setInterval(fetchChartData, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  // odświeżanie danych 
+  useEffect(() => {
+    const dataInterval = setInterval(fetchCurrencies, 120000);
+    return () => clearInterval(dataInterval);
+  }, []);
+
+  
+  useEffect(() => {
+    setDisplayedCurrencies(filteredCurrencies);
+  }, [filteredCurrencies]);
 
   return (
     <div className="container">
@@ -43,17 +73,17 @@ function Dashboard({ filteredCurrencies, onFilter }) {
       <div className="main-content">
         <div className="content">
           <CurrencyFilter onFilter={onFilter} />
-          
+
           <main>
             <div className="boxy">
               <div className="box">
                 <h1><i className="fa-brands fa-bitcoin"></i></h1>
                 <div className="wykresb">
-                  {/*  Bitcoin */}
+                  {/* Bitcoin */}
                   <CryptoChart coin="bitcoin" />
                 </div>
                 <br /><br />
-                <p className="wartoscb">$27,000</p>
+                <p className="wartoscb">${getPrice('Bitcoin')}</p>
               </div>
               <div className="box">
                 <h1><i className="fa-brands fa-ethereum"></i></h1>
@@ -62,16 +92,16 @@ function Dashboard({ filteredCurrencies, onFilter }) {
                   <CryptoChart coin="ethereum" />
                 </div>
                 <br /><br />
-                <p className="wartoscb">$1,800</p>
+                <p className="wartoscb">${getPrice('Ethereum')}</p>
               </div>
               <div className="box">
                 <h1><i className="fa-brands fa-viacoin"></i></h1>
                 <div className="wykresb">
-                  {/*  Viacoin */}
+                  {/* Viacoin */}
                   <CryptoChart coin="viacoin" />
                 </div>
                 <br /><br />
-                <p className="wartoscb"> $0.50</p>
+                <p className="wartoscb">${getPrice('Viacoin')}</p>
               </div>
             </div>
 
@@ -102,14 +132,14 @@ function Dashboard({ filteredCurrencies, onFilter }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredCurrencies.length > 0 ? (
-                      filteredCurrencies.map((currency) => (
+                    {displayedCurrencies.length > 0 ? (
+                      displayedCurrencies.map((currency) => (
                         <tr key={currency.id}>
                           <td>{currency.id}</td>
                           <td>{currency.name}</td>
                           <td>{currency.symbol}</td>
-                          <td>${currency.price}</td>
-                          <td>{currency.percentageChange}%</td>
+                          <td>${parseFloat(currency.price).toFixed(2)}</td>
+                          <td>{parseFloat(currency.percentage).toFixed(2)}%</td>
                         </tr>
                       ))
                     ) : (

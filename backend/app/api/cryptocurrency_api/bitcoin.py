@@ -1,4 +1,4 @@
-from app.api.keys import crypto_key as key
+from backend.app.api.keys import crypto_key as key
 import asyncio
 import aiohttp
 

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from app.models.cryptocurrencies import CryptoRate
-from app.db.mongo_connection import database
-from app.db.crypto_mongo import save_data_to_mongo as save_crypto_data
+from backend.app.models.cryptocurrencies import CryptoRate
+from backend.app.db.mongo_connection import database
+from backend.app.db.crypto_mongo import save_data_to_mongo as save_crypto_data
 
 router = APIRouter()
 

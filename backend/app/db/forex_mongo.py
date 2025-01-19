@@ -1,8 +1,8 @@
-from app.api.currency_api.cr_api import forex
-from app.models.currencies import Forex
+from backend.app.api.currency_api.cr_api import forex
+from backend.app.models.currencies import Forex
 from datetime import datetime
 import asyncio
-from app.db.mongo_connection import database
+from backend.app.db.mongo_connection import database
 import aiohttp
 
 collection = database["currencies"]

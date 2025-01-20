@@ -22,13 +22,13 @@ const CurrencyFilter = ({ onFilter }) => {
     onFilter(filterData); 
   };
 
-  return (
+    return (
     <form className="currency-filter" onSubmit={handleSubmit}>
       <input
         className="form-input"
         type="text"
         name="searchTerm"
-        placeholder="Wyszukaj walutę"
+        placeholder="Search Currency"
         value={formData.searchTerm}
         onChange={handleChange}
       />
@@ -38,15 +38,15 @@ const CurrencyFilter = ({ onFilter }) => {
         value={formData.currencyType}
         onChange={handleChange}
       >
-        <option value="all">Wszystkie</option>
-        <option value="fiat">Waluty Fiat</option>
-        <option value="crypto">Kryptowaluty</option>
+        <option value="all"> All Currencies </option>
+        <option value="fiat">Fiat</option>
+        <option value="crypto">Cryptocurrencies</option>
       </select>
       <input
         className="form-input"
         type="number"
         name="minValue"
-        placeholder="Min. wartość"
+        placeholder="Min. value"
         value={formData.minValue}
         onChange={handleChange}
       />
@@ -54,7 +54,7 @@ const CurrencyFilter = ({ onFilter }) => {
         className="form-input"
         type="number"
         name="maxValue"
-        placeholder="Max. wartość"
+        placeholder="Max. value"
         value={formData.maxValue}
         onChange={handleChange}
       />
@@ -64,13 +64,13 @@ const CurrencyFilter = ({ onFilter }) => {
         value={formData.sortOption}
         onChange={handleChange}
       >
-        <option value="">Sortuj po</option>
-        <option value="priceAsc">Cenie rosnąco</option>
-        <option value="priceDesc">Cenie malejąco</option>
-        <option value="name">Nazwie</option>
-        <option value="percentageChange">Zmianie %</option>
+        <option value="">Sort by</option>
+        <option value="priceAsc">Ascending Price</option>
+        <option value="priceDesc">Descending Price</option>
+        <option value="name">Name</option>
+        <option value="percentageChange">Change % </option>
       </select>
-      <button type="submit" className="form-button">Filtruj</button>
+      <button type="submit" className="form-button">Filter</button>
     </form>
   );
 };

@@ -1,5 +1,5 @@
 body, .main-container {
-    margin: 0;
+    margin-top: 0;
     padding: 0;
 }
 .container {
@@ -19,15 +19,21 @@ header, footer {
     font-size: 18px; 
     position: fixed;
 }
-
-
-nav a {
-    color: #000000;
-    text-decoration: none;
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 10px 0;
+    text-align: center;
     font-weight: bold;
+    font-size: 18px;
+    color: white;
 }
 
 .main-content {
+    margin-top: 43px;
     display: flex;
     flex-direction: column;
     margin-left: 160px; 
@@ -35,6 +41,7 @@ nav a {
     padding: 20px;
     height: calc(100vh - 80px);
     overflow-y: auto;
+    
 }
 
 .main-content::-webkit-scrollbar {
@@ -46,15 +53,6 @@ nav a {
     padding: 20px;
     border-radius: 60px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.prawa {
-    background-color: #ebebf5;
-    width: 90px; 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
 }
 
 .boxy {
@@ -129,7 +127,6 @@ nav a {
     text-align: center;
 }
 
-
 .wykres_market {
     width: 80%;
     height: 200px;
@@ -141,9 +138,7 @@ nav a {
     display: flex; 
     align-items: center;
     justify-content: center; 
-    
 }
-
 
 .chart-img {
     max-width: 100%;
@@ -159,25 +154,23 @@ nav a {
 .chart-img:hover{
     transform: scale(1.5); 
 }
+
 .box_z_czasem {
     background-color: #ffffff;
     padding: 15px;
     border-radius: 40px;
     text-align: center;
     font-weight: bold;
-    min-width: 450px;
-	min-height: 200px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-	margin-left: 60px;
-	margin-right: 110px;
     gap: 20px;
-    height: 100%;
-	flex-direction: column;
-	font-size: 2rem;
+    flex-direction: column;
+    font-size: 2rem;
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto; 
 }
 .recent-activities {
     padding: 10px;
@@ -216,27 +209,229 @@ td {
     text-align: left; 
     vertical-align: middle; 
 }
-.search-form {
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .search-form input,
+        .search-form select,
+        .search-form button {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-form button {
+            background-color: #8c8cfc;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #6a6af7;
+        }
+        
+        @media (max-width: 1920px) and (min-width: 1201px) {
+            .box_z_czasem {
+                max-width: 450px; 
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .boxy {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .box_z_czasem {
+                max-width: 100%; 
+                padding: 10px; 
+            }
+        
+            .market_czas {
+                flex-direction: column;
+                gap: 20px;
+            }
+        
+            .market_overview, .box_z_czasem {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        
+            .recent-activities {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .chart-img {
+                transform: scale(1); 
+            }
+        }
+        
+       
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 20px;
+                margin-right: 20px;
+                margin-top: -25px;
+            }
+        
+            .boxy {
+                flex-direction: column;
+                gap: 20px;
+            }
+        
+            .box {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        
+            .market_overview,
+    .box_z_czasem {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+        
+            .recent-activities {
+                padding: 10px;
+            }
+        
+            th, td {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+            
+            .box_z_czasem {
+                font-size: 1.5rem;
+            }
+
+            #tytula {
+                font-size: 18px;
+            }
+            .chart-img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        
+       
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+        
+            .boxy {
+                gap: 15px;
+            }
+        
+            .box h1 {
+                font-size: 2rem;
+            }
+        
+            .market_czas {
+                flex-direction: column;
+            }
+
+            .market_overview,
+            .recent-activities {
+                padding: 5px;
+                font-size: 0.7rem;
+            }
+
+            .box_z_czasem{
+                min-width: 100%;
+                padding: 10px;
+            }
+        
+            .recent-activities {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        
+            th, td {
+                font-size: 0.8rem;
+            }
+        
+            #tytula {
+                font-size: 16px;
+            }
+        }
+
+
+
+.clock-container {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
     align-items: center;
-    font-family: Arial, sans-serif;
-}
-.search-form input,
-.search-form select,
-.search-form button {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.search-form button {
-    background-color: #8c8cfc;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.search-form button:hover {
-    background-color: #6a6af7;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
+.calendar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.calendar-title {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #333;
+}
+
+.calendar-date {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #6a6af7;
+}
+
+.calendar-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.calendar-table th,
+.calendar-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.calendar-cell.today {
+    background-color: #8c8cfc;
+    color: white;
+}
+
+.clock {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: #333;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .calendar-table {
+        max-width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .clock {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

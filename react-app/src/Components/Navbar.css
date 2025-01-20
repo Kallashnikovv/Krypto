@@ -1,5 +1,4 @@
 nav {
-    background-color: #ebebf5;
     width: 160px; 
     padding: 20px;
     display: flex;
@@ -9,10 +8,43 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
+    background-color: transparent; /* Usuwamy tło */
+    z-index: 20; /* Ustawiamy nad resztą elementów */ 
 }
 
 nav p {
     color: #000000;
     text-decoration: none;
     font-weight: bold;
+}
+
+nav a
+{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #706d72 !important;  
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode nav a:hover {
+    color: #d4c200 !important; 
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: row;
+        gap: 10px; /* Zmniejszony odstęp między elementami nawigacji */
+        position: static;
+        width: auto;
+        padding: 10px;
+        justify-content: center;
+        margin-top: 60px; /* Mniejszy odstęp od góry */
+    }
+    
 }

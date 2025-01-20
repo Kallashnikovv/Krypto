@@ -1,3 +1,5 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
 /.pnp
@@ -16,32 +18,6 @@
 .env.test.local
 .env.production.local
 
-# IDE files
-/.idea          # WebStorm, PhpStorm
-react-app/.idea/ # Ignorowanie folderu .idea w react-app
-/.vscode        # Visual Studio Code
-*.sublime-workspace  # Sublime Text
-*.sublime-project   # Sublime Text
-
-# OS files
-.DS_Store        # macOS
-Thumbs.db         # Windows
-ehthumbs.db       # Windows
-
-# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Temporary files
-*.swp          # Vim
-*.swo          # Vim
-*.bak          # General backup file
-*.tmp          # Temporary files
-
-# Cache
-.cache          # Cache folder (np. dla webpacka)
-
-# Local ESLint and Prettier config
-.eslintcache
-.prettierignore

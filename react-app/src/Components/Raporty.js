@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Raporty.css";
 import Navbar from './Navbar';
 import ThemeToggle from './ThemeToggle';
-import CurrencyFilter from './Form'; 
+import Form from './Form'; 
+import NotificationBell from './NotificationBell';
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import axios from 'axios';
@@ -13,7 +14,6 @@ const Raporty = () => {
   const [chartUrl, setChartUrl] = useState('/cryptocurrency_info_today.png'); 
   const [trending, setTrending] = useState([]); 
   const [largestGainers, setLargestGainers] = useState([]); 
-
   // filtrowanie danych
   const filterData = (filter) => {
     const { searchTerm, currencyType, minValue, maxValue, sortOption } = filter;
@@ -61,34 +61,27 @@ const Raporty = () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/crypto/'); 
       const cryptoData = response.data;
-
       
       const uniqueData = {};
-
       cryptoData.forEach(item => {
         
         if (!uniqueData[item.id]) {
           uniqueData[item.id] = item;
         }
       });
-
       
       const uniqueCryptoData = Object.values(uniqueData);
-
       //to jest bez sensu
       const updatedData = uniqueCryptoData.map(item => {
         const change1H = (item.price * (item.percentage / 100)).toFixed(2);
         const change24H = (item.price * (item.percentage / 100) * 24).toFixed(2);
-
         
         const change7d = item.percentage 
           ? ((item.price * (1 + (item.percentage / 100) * 7)) - item.price).toFixed(2)
           : 'N/A';
-
         
         const marketCap = (item.price * 1000000000).toFixed(2);
         //
-
         return {
           ...item,
           change1H,
@@ -97,56 +90,44 @@ const Raporty = () => {
           marketCap
         };
       });
-
       setData(updatedData); 
       setLoading(false); 
-
       // trending
       const trendingData = updatedData
         .sort((a, b) => b.change1H - a.change1H) 
         .slice(0, 2); 
-
       setTrending(trendingData); 
-
       //largest gainers
       const largestGainersData = updatedData
         .sort((a, b) => (b.change1H - a.change1H)) 
         .slice(0, 2); 
-
       setLargestGainers(largestGainersData); 
-
     } catch (error) {
       console.error('Błąd podczas pobierania danych:', error);
       setLoading(false); 
     }
   };
-
   // pobieranie wykresu
   const fetchChartData = () => {
     const newUrl = `/cryptocurrency_info_today.png?timestamp=${new Date().getTime()}`;
     console.log('Fetching new chart URL:', newUrl);
     setChartUrl(newUrl);
   };
-
   useEffect(() => {
     fetchData(); 
     fetchChartData(); 
-
     const dataInterval = setInterval(() => {
       fetchData();  // Odświeżenie danych 
     },  120000); 
-
     const chartInterval = setInterval(() => {
       fetchChartData();  
     }, 60000); // 60000 ms = 1 minuta
-
     
     return () => {
       clearInterval(dataInterval);
       clearInterval(chartInterval);
     };
   }, []); 
-
   // generowanie raportu PDF
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -182,17 +163,61 @@ const Raporty = () => {
     doc.save("cryptocurrency_report.pdf");
   };
 
-  return (
-    <div className="container">
-      <ThemeToggle />
-      <header>
-        <Navbar />
-        <h1><i className="fa-solid fa-coins"></i> CRYPTO</h1>
-      </header>
+  //To jest ze kolor jest czerwony zaleznie od + czy -
+  const getColorForChange = (change) => {
+    const changeStr = String(change);
+    return changeStr.startsWith('-') ? 'red' : 'green';
+  };
 
-      <div className="main-content">
-        <div className="content">
-          <CurrencyFilter onFilter={filterData} />
+  return (
+    <div className="container_rap">
+      <NotificationBell />
+      <ThemeToggle />
+      <Navbar />
+      <div className="header_rap">
+        <h1><i className="fa-solid fa-coins"></i> CRYPTO</h1>
+      </div>
+
+      <div className="main-content_rap">
+        <div className="content_rap">
+        <div className="form-wrapper">
+        <Form onFilter={filterData} />
+        </div>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Asset</th>
+                  <th>Cost</th>
+                  <th>1H</th>
+                  <th>24H</th>
+                  <th>7D</th>
+                  <th>MCAP</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((crypto, index) => (
+                 <tr key={index}>
+                 <td>{index + 1}</td>
+      <td>{crypto.name}</td>
+      <td>${parseFloat(crypto.price).toFixed(2)}</td>
+      <td style={{ color: getColorForChange(crypto.percentage) }}>
+        {parseFloat(crypto.percentage).toFixed(2)}%
+      </td>
+      <td style={{ color: getColorForChange(crypto.change24H) }}>
+        {parseFloat(crypto.change24H).toFixed(2)}%
+      </td>
+      <td style={{ color: getColorForChange(crypto.change7d) }}>
+        {parseFloat(crypto.change7d).toFixed(2)}%
+      </td>
+      <td>${parseFloat(crypto.marketCap).toFixed(2)}B</td>
+               </tr>               
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <div className="chart">
             <h2>Chart</h2>
             <img 
@@ -211,52 +236,37 @@ const Raporty = () => {
             </button>
           </div>
 
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Asset</th>
-                  <th>Cost</th>
-                  <th>1H</th>
-                  <th>24H</th>
-                  <th>7D</th>
-                  <th>MCAP</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((crypto, index) => (
-                  <tr key={index}>
-                    <td>{crypto.name}</td>
-                    <td>${parseFloat(crypto.price).toFixed(2)}</td>
-                    <td>{parseFloat(crypto.percentage).toFixed(2)}%</td>
-                    <td>{parseFloat(crypto.change24H).toFixed(2)}%</td>
-                    <td>{parseFloat(crypto.change7d).toFixed(2)}%</td>
-                    <td>${parseFloat(crypto.marketCap).toFixed(2)}B</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Trending Gainers */}
           <div className="trending-gainers">
-            <div className="trending">
-              <h3>Trending 🔥</h3>
-              <ul>
-                {trending.map((crypto, index) => (
-                  <li key={index}>{index + 1}. {crypto.name} ${parseFloat(crypto.price).toFixed(2)} </li>
-                ))}
-              </ul>
-            </div>
+          <div className="trending">
+  <h3>Trending 🔥</h3>
+  <ul>
+    {trending.map((crypto, index) => (
+      <li key={index}>
+        {index + 1}. {crypto.name}{" "}
+        <span style={{ color: getColorForChange(crypto.price) }}>
+          ${parseFloat(crypto.price).toFixed(2)}
+        </span>
+      </li>
+    ))}
+  </ul>
+</div>
 
-            <div className="gainers">
-              <h3>Largest Gainers 🚀</h3>
-              <ul>
-                {largestGainers.map((crypto, index) => (
-                  <li key={index}>{index + 1}. {crypto.name} ${parseFloat(crypto.price).toFixed(2)} {parseFloat(crypto.change24H).toFixed(2)}%</li>
-                ))}
-              </ul>
-            </div>
+<div className="gainers">
+  <h3>Largest Gainers 🚀</h3>
+  <ul>
+    {largestGainers.map((crypto, index) => (
+      <li key={index}>
+        {index + 1}. {crypto.name}{" "}
+        <span style={{ color: getColorForChange(crypto.price) }}>
+          ${parseFloat(crypto.price).toFixed(2)}
+        </span>{" "}
+        <span style={{ color: getColorForChange(crypto.change24H) }}>
+          {parseFloat(crypto.change24H).toFixed(2)}%
+        </span>
+      </li>
+    ))}
+  </ul>
+</div>
           </div>
         </div>
 

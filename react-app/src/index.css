@@ -24,10 +24,6 @@ header, footer {
   color: #000;
 }
 
-nav {
-  background-color: #ebebf5;
-}
-
 nav a {
   color: #000;
 }
@@ -86,7 +82,7 @@ body.dark-mode nav {
 }
 
 body.dark-mode nav a {
-  color: #FFF700;
+  color: #fcff54;
 }
 
 body.dark-mode .content {
@@ -116,3 +112,75 @@ body.dark-mode .box_z_czasem {
 body.dark-mode .recent-activities {
   background-color: #2F2F37;
 }
+
+body.dark-mode tbody tr:hover {
+  background-color: #232224 !important;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .header_rap {
+  background-color: #1C1C21;
+  color: #000;
+}
+
+body.dark-mode .content_rap {
+  background-color: #232329;
+}
+
+body.dark-mode .table-container {
+  background: #2f2f35; 
+  border: 15px solid #2F2F37; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); 
+}
+
+body.dark-mode thead {
+  background-color: #1e1e22;
+}
+
+body.dark-mode table tr:nth-child(even) {
+  background-color: #242427 ;
+}
+
+body.dark-mode .chart
+{
+  background-color: #2F2F37;
+}
+
+body.dark-mode .trending
+{
+  background-color: #2F2F37;
+}
+
+body.dark-mode .gainers 
+{
+  background-color: #2F2F37;
+}
+
+body.dark-mode .trending h3
+{
+  background-color: #1e1e22;
+}
+
+body.dark-mode .gainers h3
+{
+  background-color: #1e1e22;
+}
+
+body.dark-mode .trending li
+{
+  background-color: #2F2F37;
+}
+
+body.dark-mode .gainers li
+{
+  background-color: #2F2F37;
+}
+
+body.dark-mode .trending ul li:nth-child(even) {
+  background-color: #3d3d46;
+}
+
+body.dark-mode .gainers ul li:nth-child(even) {
+  background-color: #3d3d46;
+}
+

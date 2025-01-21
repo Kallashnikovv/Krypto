@@ -1,196 +1,352 @@
-/* musze poprawic bo  */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    padding: 10px 0;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    background-color: #6b5b95; 
-    color: white;
+/* Twój kod CSS z wprowadzonymi poprawkami */
+
+.main-content_rap {
+    margin: 0;
+    padding: 0;
 }
 
-.prawa {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 90px; 
-    background-color: #ded5df;
-    z-index: 5;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; 
-    background-color: #6b5b95;
-    z-index: 10;
-}
-
-.main-content {
+.container_rap {
     display: grid;
-    grid-template-areas: 
-        "table"
-        "chart"
-        "trending-gainers";
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
-    padding: 20px;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 20px;
 }
-.download-btn{
-    margin: 10px;
-    width: 200px;
-    height:60px;
-    top:auto;
-    padding: 10px;
-    background-color: #9b98e4; 
-    color: #ebebf5; 
+
+.header_rap {
+    background-color: #ebebf5;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.form-wrapper {
+    grid-area: form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin-left: -10px;
+}
+
+.content_rap {
+    margin-top: 43px;
+    display: grid;
+    grid-template-areas:
+        "form form"
+        "table chart"
+        "table trending"
+        "table gainers";
+    grid-template-columns: 60% 40%;
+    grid-template-rows: auto auto auto 1fr;
+    gap: 20px;
+    align-items: start;
+    background-color: #f4f4fc;
+    padding: 20px;
+    border-radius: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: visible; 
+}
+
+.main-content_rap {
+    gap: 20px;
+    margin-left: 160px;
+    margin-right: 90px;
+    padding: 20px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+.main-content_rap::-webkit-scrollbar {
+    display: none;
+}
+
+.download-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #9b98e4;
+    color: #fff;
     border: none;
-    border-radius: 10px; 
+    border-radius: 10px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s;
 }
 .download-btn:hover{
     background-color: #7674b8; 
 }
-  
+
 .table-container {
+    margin-top: 5px;
+    margin-left: 10px;
     grid-area: table;
-    background: #fff;
+    overflow-x: auto;
     border-radius: 25px;
+    background: #ffffff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+    border: 15px solid white;
+    max-height: 686px; 
+    height: calc(100vh - 150px);
+    justify-content: stretch;
     overflow-y: auto;
-    height: 480px;
 }
+
 .table-container::-webkit-scrollbar {
     display: none;
+}
+
+th, td {
+    padding: 7px 10px;
+    line-height: 0;
+}
+
+thead {
+    background-color: #e6e2e7;
+    border-radius: 20px 20px 0 0;
+}
+
+table thead tr {
+    height: 30px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    color: #555;
+    font-weight: bold;
 }
 
-
-th, td {
+td {
     text-align: left;
-    padding: 12px;
-}
-
-th {
-    background-color: #e1e1e1;
+    padding: 8px;
+    height: 30px;
+    color: #555;
+    font-weight: bold;
 }
 
 tr:nth-child(even) {
     background-color: #f3f0f5;
 }
-td {
-    font-size: 15px;
-    font-weight: bold;
+
+tbody tr:hover {
+    background-color: #ccc4cb;
+    transition: background-color 0.3s ease;
 }
 
+table thead th {
+    padding: 10px;
+    height: 45px;
+    line-height: 1;
+    font-size: 14px;
+    text-align: left;
+    background-color: #f3eefc;
+}
+
+table tbody td {
+    padding: 20px 10px; 
+    height: 55px;
+}
+
+table tbody tr {
+    height: 55px; 
+}
+
+table thead th {
+    padding: 10px 10px; 
+    height: 50px;
+}
 
 .chart {
+    margin-top: 5px;
     grid-area: chart;
     background: #fff;
     border-radius: 25px;
+    padding: 15px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     text-align: center;
+    width: 89%;
+    margin: 5px auto;
     height: auto;
     flex-grow: 1; 
+    position: relative;
+    overflow: visible;
     
 }
+
 .chart_img{
-    max-width: 100%;     
-    max-height: 100%;    
+    max-width: 70%;     
+    max-height: 70%;    
     object-fit:fill;     
     border-radius: 10px;     
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease;
-    min-width: 1000px;
+    min-width: 500px;
     max-height: 450px;
+    position: relative; /* Dodanie kontekstu dla pozycji */
+    z-index: 11; /* Zapewnienie widoczności powiększonego obrazu */
 }
 .chart_img:hover{
     transform: scale(1.5); 
 }
-.chart h2
-{
-margin-top: 0px;
+
+.chart h2 {
+    margin-top: 3px;
 }
 
-.trending, .gainers {
-    background: #fff;
-    border-radius: 25px;
-    padding: 0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-    line-height: 1.8;
-    letter-spacing: 2px;
-    overflow: hidden;
-    text-align: center;
-    height: 220px;
-}
-.trending, .gainers {
-    background: #fff;
-    border-radius: 25px;
-    padding: 0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-    text-align: center;
-    height: 220px;
-    width: 48%;
-}
 .trending-gainers {
-    grid-area: trending-gainers;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    grid-area: trending, gainers;
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    width: 89%;
+    margin: 5px auto;
 }
 
-.chart h3, .trending h3, .gainers h3 {
-    margin: 0 0 12px;
-    font-size: 18px;
+.trending, .gainers {
+    background: #fff;
+    border-radius: 25px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-weight: bold;
 }
-.trending h3 {
-    padding: 16px;
-    background: linear-gradient(90deg, #ded5df, #ded5df); 
-    color: #000000; 
-    border-radius: 25px 25px 0 0; 
-}
-
-.gainers h3 {
-    padding: 16px;
-    background: linear-gradient(90deg, #ded5df, #ded5df); 
-    color: #000000; 
-    border-radius: 25px 25px 0 0; 
+.trending h3, .gainers h3 {
+    padding: 10px;
+    margin: 0;
+    background: #ded5df;
+    color: #000;
+    border-radius: 25px 25px 0 0;
 }
 
 .trending ul, .gainers ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-top: 25px;
 }
 
 .trending li, .gainers li {
-    padding: 8px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #f0f0f0;
+    color: #555;
 }
 
-.trending li:last-child, .gainers li:last-child {
-    border-bottom: none;
+.trending ul li:nth-child(even), .gainers ul li:nth-child(even) {
+    background-color: #f3f0f5;
 }
 
-.chart canvas {
+footer {
+    background-color: #ebebf5;
+    color: #000;
+    text-align: center;
+    padding: 5px;
+    font-size: 18px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100%; 
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+@media (max-width: 1100px) {
+    .content_rap {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "form"
+            "table"
+            "chart"
+            "trending"
+            "gainers";
+        padding: 10px;
+        width: 100%;
+    }
+
+    .header_rap {
+        font-size: 16px;
+        padding: 8px 0;
+    }
+
+    .table-container, .chart, .trending, .gainers {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .trending-gainers {
+        width: 100%;
+        margin: 10px auto;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .content_rap {
+        padding: 5px;
+    }
+
+    .header_rap {
+        font-size: 14px;
+        padding: 5px 0;
+    }
+
+    .table-container, .chart, .trending, .gainers {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .chart {
+        height: 300px;
+    }
+
+    th, td {
+        font-size: 12px;
+    }
+
+    .trending h3, .gainers h3 {
+        font-size: 14px;
+    }
+
+    .trending ul li, .gainers ul li {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content_rap {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .header_rap {
+        font-size: 10px;
+    }
+
+    .chart {
+        height: 200px;
+    }
+
+    th, td {
+        font-size: 10px;
+    }
 }

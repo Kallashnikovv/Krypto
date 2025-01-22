@@ -44,7 +44,7 @@ const updateData = async () => {
 useEffect(() => {
   fetchData();
   //  aktualizacja danych co 2 minuty
-  const interval = setInterval(updateData, 120000);
+  const interval = setInterval(updateData, 12000000);
   return () => clearInterval(interval);
 }, []);
 const handleFilter = (filterData) => {

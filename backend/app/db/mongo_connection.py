@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from backend.app.api.keys import mongopswd as pswd, mongousr as usr, mongoserver as server, mongoappname as appname
+from app.api.keys import mongopswd as pswd, mongousr as usr, mongoserver as server, mongoappname as appname
 
 uri = f"mongodb+srv://{usr()}:{pswd()}@{server()}/?retryWrites=true&w=majority&appName={appname()}"
 client = MongoClient(uri, server_api=ServerApi('1'))

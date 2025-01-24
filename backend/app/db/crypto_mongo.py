@@ -1,11 +1,11 @@
 from pymongo import ASCENDING
 import asyncio
 import aiohttp
-import backend.app.api.keys as keys
-from backend.app.models.cryptocurrencies import CryptoRate
-from backend.app.api.cryptocurrency_api.bitcoin import fetch_data
+import app.api.keys as keys
+from app.models.cryptocurrencies import CryptoRate
+from app.api.cryptocurrency_api.bitcoin import fetch_data
 from datetime import datetime
-from backend.app.db.mongo_connection import database
+from app.db.mongo_connection import database
 
 #MongoDB connection
 cryptocurrencies = database['cryptocurrencies']

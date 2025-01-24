@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from datetime import datetime, timedelta
 from fpdf import FPDF
-from backend.app.db.mongo_connection import database
+from app.db.mongo_connection import database
 
 
 collection = database["cryptocurrencies"]

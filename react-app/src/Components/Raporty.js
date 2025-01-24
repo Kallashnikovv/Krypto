@@ -118,10 +118,10 @@ const Raporty = () => {
     fetchChartData(); 
     const dataInterval = setInterval(() => {
       fetchData();  // Odświeżenie danych 
-    },  120000); 
+    },  120000000); 
     const chartInterval = setInterval(() => {
       fetchChartData();  
-    }, 60000); // 60000 ms = 1 minuta
+    }, 600000000); // 60000 ms = 1 minuta
     
     return () => {
       clearInterval(dataInterval);

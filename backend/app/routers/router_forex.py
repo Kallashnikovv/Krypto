@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from backend.app.models.currencies import Forex
-from backend.app.db.mongo_connection import database
-from backend.app.db.forex_mongo import save_data_to_mongo as save_forex_data
+from app.models.currencies import Forex
+from app.db.mongo_connection import database
+from app.db.forex_mongo import save_data_to_mongo as save_forex_data
 
 router = APIRouter()
 

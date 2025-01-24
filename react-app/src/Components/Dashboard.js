@@ -18,9 +18,28 @@ function Dashboard({ filteredCurrencies, onFilter }) {
   const [loading, setLoading] = useState(false);
   
   const getPrice = (coinName) => {
-    const coin = displayedCurrencies.find(currency => currency.name.toLowerCase() === coinName.toLowerCase());
-    return coin ? parseFloat(coin.price).toFixed(2) : 'N/A';
+    const defaultCurrencies = [
+      { name: 'Bitcoin', price: '94335.50' },
+      { name: 'Ethereum', price: '3264.54' },
+      { name: 'Viacoin', price: '0.23' }, 
+    ];
+
+
+    const coin = displayedCurrencies.find(currency => 
+      currency.name.toLowerCase() === coinName.toLowerCase()
+    );
+
+
+    if (!coin) {
+      const defaultCoin = defaultCurrencies.find(currency => 
+        currency.name.toLowerCase() === coinName.toLowerCase()
+      );
+      return defaultCoin ? defaultCoin.price : 'N/A';
+    }
+
+    return parseFloat(coin.price).toFixed(2);
   };
+  
 
   const fetchChartData = () => {
     setChartUrls({
@@ -47,13 +66,13 @@ function Dashboard({ filteredCurrencies, onFilter }) {
 
   useEffect(() => {
     fetchChartData();
-    const interval = setInterval(fetchChartData, 60000);
+    const interval = setInterval(fetchChartData, 60000000);
     return () => clearInterval(interval);
   }, []);
 
   // odświeżanie danych 
   useEffect(() => {
-    const dataInterval = setInterval(fetchCurrencies, 120000);
+    const dataInterval = setInterval(fetchCurrencies, 120000000);
     return () => clearInterval(dataInterval);
   }, []);
   
